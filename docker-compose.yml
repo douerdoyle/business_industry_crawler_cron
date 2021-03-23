@@ -1,0 +1,25 @@
+version: '3.3'
+# docker-compose --compatibility up
+services:
+  business_industry_scheduler:
+    container_name: business_industry_scheduler
+    build:
+      context: ./image
+      dockerfile: dockerfile
+    image: iii/business_industry_scheduler-python3.8.3:v1.0
+    deploy:
+      resources:
+        limits:
+          cpus: '2.000'
+          memory: 8G
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1g"
+    environment:
+      TZ: "Asia/Taipei"
+      LANG: C.UTF-8
+      API_PROPERTY : "FORMALITY"
+    volumes:
+      - ./src:/app

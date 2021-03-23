@@ -1,0 +1,19 @@
+API_PROPERTY=FORMALITY
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m  h  dom mon dow command
+30   23   *   *   *  cd /app/ && python ./applications/schedule/opendata_download/opendata_downloader.py
+0    0    *   *   *  cd /app/ && python ./applications/schedule/gcis_db_and_ternary/gcis_crawler.py gcis_list_company
+0    0    *   *   *  cd /app/ && python ./applications/schedule/gcis_db_and_ternary/gcis_crawler.py gcis_new_company
+0    0    *   *   1  cd /app/ && python ./applications/schedule/gcis_db_and_ternary/gcis_crawler.py gcis_normal_company
+0    0    1   *   *  cd /app/ && python ./applications/schedule/gcis_db_and_ternary/gcis_update_from_opendata.py
+0    0    1   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_balance_sheet_3y.py
+0    0    1   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_balance_sheet_4s.py
+0    0    1   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_condensed_income_statement_3y.py
+0    0    1   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_condensed_income_statement_4s.py
+0    0    *   *   1  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_endorsement_and_guarantee.py
+0    0    *   *   1  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_stakeholder_asset.py
+0    2    *   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_important_information.py
+0    10   *   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_important_information.py
+0    16   *   *   *  cd /app/ && python ./applications/schedule/mops_db_and_ternary/mops_important_information.py
